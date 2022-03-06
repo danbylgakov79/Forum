@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from crudapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('create/', create_view),
+    path('',category_view),
+    path('<int:id>/',category_detail_view),
 ]
