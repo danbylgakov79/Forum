@@ -22,4 +22,6 @@ urlpatterns = [
     path('create/', create_view),
     path('',category_view),
     path('<int:id>/',category_detail_view),
+    path('update/<int:id>/', category_update),
+    path('delete/<int:id>/',category_delete)
 ]

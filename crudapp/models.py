@@ -9,5 +9,5 @@ class CategoryModel(models.Model):
         return self.Name
 
     class Meta:
-       #managed = False
+
        db_table = 'Category'
