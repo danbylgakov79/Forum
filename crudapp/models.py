@@ -11,3 +11,16 @@ class CategoryModel(models.Model):
     class Meta:
 
        db_table = 'Category'
+
+
+class TopicModel(models.Model):
+    ID = models.IntegerField()
+    Category = models.IntegerField()
+    Name = models.CharField(max_length=256)
+    Content = models.IntegerField()
+
+    def __str__(self):
+        return self.Name
+
+    class Meta:
+        db_table = 'Topic'

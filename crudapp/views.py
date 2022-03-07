@@ -1,4 +1,4 @@
-from .models import CategoryModel
+from .models import CategoryModel,TopicModel
 from .forms import CategoryForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
@@ -27,8 +27,8 @@ def category_detail_view(request,id):
         data = CategoryModel.objects.get(id=id)
     except CategoryModel.DoesNotExist:
         raise Http404('Категория не найдена')
-
-    return render(request, 'detailview.html',{'data': data})
+    dataset = TopicModel.objects.filter(Category=id)
+    return render(request, 'listtopic.html',{'dataset': dataset})
 def category_update(request,id):
     try:
         old_data = get_object_or_404(CategoryModel,id=id)
