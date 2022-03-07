@@ -3,7 +3,7 @@
     <a href="create/">Добавить категорию</a>
 </p>
 {% for data in dataset %}
-{{ data }}
+<a href="{{ data.ID }}">{{ data }}</a>
     <a href="update/{{ data.ID }}">Изменить</a>
     <a href="delete/{{ data.ID }}">Удалить</a>
 <hr>

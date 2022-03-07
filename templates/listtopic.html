@@ -1,8 +1,11 @@
 <p>
-
+    <a href="../createtopic/">Добавить тему</a>
 </p>
 {% for data in dataset %}
-{{ data }}
+    <a href="{{ data.ID }}">{{ data }}</a>
+    <a href="../updatetopic/{{ data.ID }}">Изменить</a>
+    <a href="../deletetopic/{{ data.ID }}">Удалить</a>
+<hr>
 <hr>
 {% endfor %}
 <a href="/">Назад</a>
