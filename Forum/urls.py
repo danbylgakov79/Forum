@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from crudapp.views import *
 from topicapp.views import *
+from themesapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,9 @@ urlpatterns = [
     path('delete/<int:id>/', category_delete),
     path('createtopic/', create_topic),
     path('deletetopic/<int:id>/', topic_delete),
-    path('updatetopic/<int:id>/', topik_update)
+    path('updatetopic/<int:id>/', topik_update),
+    path('<int:idCategory>/<int:id>/', themes_view),
+    path('<int:idCategory>/createtheme/',create_theme),
+    path('<int:idCategory>/deletetheme/<int:id>/',theme_delete),
+    path('<int:idCategory>/updatetheme/<int:id>',theme_update)
 ]
