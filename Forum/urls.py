@@ -29,8 +29,8 @@ urlpatterns = [
     path('createtopic/', create_topic),
     path('deletetopic/<int:id>/', topic_delete),
     path('updatetopic/<int:id>/', topik_update),
-    path('<int:idCategory>/<int:id>/', themes_view),
-    path('<int:idCategory>/createtheme/',create_theme),
-    path('<int:idCategory>/deletetheme/<int:id>/',theme_delete),
-    path('<int:idCategory>/updatetheme/<int:id>',theme_update)
+    path('<int:TopicId>/<int:id>/', themes_view),
+    path('<int:TopicId>/createtheme/',create_theme),
+    path('<int:TopicId>/deletetheme/<int:id>/',theme_delete),
+    path('<int:TopicId>/updatetheme/<int:id>',theme_update)
 ]

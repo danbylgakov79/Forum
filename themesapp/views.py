@@ -7,7 +7,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 
 
-def themes_view(request,idCategory,id):
+def themes_view(request,TopicId,id):
     try:
         data = TopicModel.objects.get(id=id)
     except TopicModel.DoesNotExist:
@@ -15,7 +15,7 @@ def themes_view(request,idCategory,id):
     dataset = ThemesModel.objects.filter(Topic=id)
     return render(request, 'listthemes.html',{'dataset': dataset})
 
-def create_theme(request,idCategory):
+def create_theme(request,TopicId):
     if request.method == 'POST':
         form = ThemesForm(request.POST)
 
@@ -31,7 +31,7 @@ def create_theme(request,idCategory):
         return render(request,'createtheme.html', context)
 
 #удаление темы
-def theme_delete(request, idCategory, id):
+def theme_delete(request, TopicId, id):
     try:
         data = get_object_or_404(ThemesModel, id=id)
     except Exception:
@@ -44,7 +44,7 @@ def theme_delete(request, idCategory, id):
         return render(request, 'deletetheme.html')
 
 #изменение темы
-def theme_update(request, idCategory,id):
+def theme_update(request, TopicId,id):
     try:
         old_data = get_object_or_404(ThemesModel,id=id)
     except Exception:
