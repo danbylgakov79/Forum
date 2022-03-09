@@ -13,7 +13,6 @@ def category_detail_view(request,Categoryid):
     except CategoryModel.DoesNotExist:
         raise Http404('Категория не найдена')
     dataset = TopicModel.objects.filter(Category=Categoryid)
-    print(dataset[0])
     return render(request, 'listtopic.html',{'dataset': dataset, 'category':Categoryid})
 
 def create_topic(request,Categoryid):
