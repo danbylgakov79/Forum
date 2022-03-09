@@ -19,9 +19,14 @@ def create_theme(request,CategoryId,Topicid):
     if request.method == 'POST':
         themesCategoryID = ThemesModel(Category=CategoryId)
         themeTopicId = ThemesModel(Topic=Topicid)
-        form = ThemesForm(request.POST,instance=themeTopicId)
+        form = ThemesForm(request.POST)
+
         if form.is_valid():
-            form.save()
+           # form.save(commit=False)
+            themes = form.save(commit=False)
+            themes.Category = CategoryId
+            themes.Topic=Topicid
+            themes.save()
             return redirect('/')
     else:
         form = ThemesForm()
