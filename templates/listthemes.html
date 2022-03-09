@@ -1,11 +1,11 @@
 <p>
-    <a href="../{{ topic }}/createtheme/">Добавить тему</a>
+    <a href="../{{ TopicId }}/createtheme/">Добавить тему</a>
 </p>
 {% for data in dataset %}
     <a href="{{ data.ID }}">{{ data }}</a>
-    <a href="../{{ topic }}/updatetheme/{{ data.ID }}">Изменить</a>
-    <a href="../{{ topic }}/deletetheme/{{ data.ID }}">Удалить</a>
+    <a href="../{{ TopicId }}/updatetheme/{{ data.ID }}">Изменить</a>
+    <a href="../{{ TopicId }}/deletetheme/{{ data.ID }}">Удалить</a>
 <hr>
 <hr>
 {% endfor %}
-<a href="/">Назад</a>
+<a href="/topic/{{ CategoryId }}">Назад</a>

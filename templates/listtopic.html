@@ -1,10 +1,10 @@
 <p>
-    <a href="../createtopic/{{ category }}">Добавить тему</a>
+    <a href="../createtopic/{{ CategoryId }}">Добавить тему</a>
 </p>
 {% for data in dataset %}
-    <a href="/themes/{{ category }}/{{ data.ID }}">{{ data }}</a>
-    <a href="../{{ category }}/updatetopic/{{ data.ID }}">Изменить</a>
-    <a href="../{{ category }}/deletetopic/{{ data.ID }}">Удалить</a>
+    <a href="/themes/{{ CategoryId }}/{{ data.ID }}">{{ data }}</a>
+    <a href="../{{ CategoryId }}/updatetopic/{{ data.ID }}">Изменить</a>
+    <a href="../{{ CategoryId }}/deletetopic/{{ data.ID }}">Удалить</a>
 <hr>
 <hr>
 {% endfor %}
