@@ -7,31 +7,31 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 
 
-def themes_view(request,TopicId,id):
+def themes_view(request,CategoryId,Topicid):
     try:
-        data = TopicModel.objects.get(id=id)
+        data = TopicModel.objects.get(id=Topicid)
     except TopicModel.DoesNotExist:
         raise Http404('Категория не найдена')
-    dataset = ThemesModel.objects.filter(Topic=id)
-    return render(request, 'listthemes.html',{'dataset': dataset})
+    dataset = ThemesModel.objects.filter(Topic=Topicid)
+    return render(request, 'listthemes.html',{'dataset': dataset, 'category':CategoryId, 'topic':Topicid})
 
-def create_theme(request,TopicId):
+def create_theme(request,CategoryId,Topicid):
     if request.method == 'POST':
-        form = ThemesForm(request.POST)
-
+        themesCategoryID = ThemesModel(Category=CategoryId)
+        themeTopicId = ThemesModel(Topic=Topicid)
+        form = ThemesForm(request.POST,instance=themeTopicId)
         if form.is_valid():
             form.save()
-
             return redirect('/')
     else:
         form = ThemesForm()
         context = {
-            'form': form
+            'form': form, 'category':CategoryId, 'topic':Topicid
         }
         return render(request,'createtheme.html', context)
 
 #удаление темы
-def theme_delete(request, TopicId, id):
+def theme_delete(request, CategoryId,Topicid, id):
     try:
         data = get_object_or_404(ThemesModel, id=id)
     except Exception:
@@ -41,10 +41,10 @@ def theme_delete(request, TopicId, id):
         data.delete()
         return redirect('/')
     else:
-        return render(request, 'deletetheme.html')
+        return render(request, 'deletetheme.html',{ 'category':CategoryId, 'topic':Topicid})
 
 #изменение темы
-def theme_update(request, TopicId,id):
+def theme_update(request,CategoryId, Topicid,id):
     try:
         old_data = get_object_or_404(ThemesModel,id=id)
     except Exception:
@@ -57,6 +57,6 @@ def theme_update(request, TopicId,id):
     else:
         form = ThemesForm(instance=old_data)
         context = {
-            'form': form
+            'form': form, 'category':CategoryId, 'topic':Topicid
         }
         return render(request,'updatetheme.html',context)

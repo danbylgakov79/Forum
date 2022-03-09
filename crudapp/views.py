@@ -17,6 +17,7 @@ def create_view(request):
         context = {
             'form': form
         }
+
         return render(request,'create.html', context)
 
 def category_view(request):

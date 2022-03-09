@@ -27,6 +27,6 @@ urlpatterns = [
     path('update/<int:id>/', category_update),
     path('delete/<int:id>/', category_delete),
     path('topic/', include('topicapp.urls')),
-    path('topic/',include('themesapp.urls')),
+    path('themes/',include('themesapp.urls')),
 
 ]

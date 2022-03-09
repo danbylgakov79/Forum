@@ -7,31 +7,34 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 
 
-def category_detail_view(request,id):
+def category_detail_view(request,Categoryid):
     try:
-        data = CategoryModel.objects.get(id=id)
+        data = CategoryModel.objects.get(id=Categoryid)
     except CategoryModel.DoesNotExist:
         raise Http404('Категория не найдена')
-    dataset = TopicModel.objects.filter(Category=id)
-    return render(request, 'listtopic.html',{'dataset': dataset})
+    dataset = TopicModel.objects.filter(Category=Categoryid)
+    print(dataset[0])
+    return render(request, 'listtopic.html',{'dataset': dataset, 'category':Categoryid})
 
-def create_topic(request):
+def create_topic(request,Categoryid):
     if request.method == 'POST':
-        form = TopicForm(request.POST)
+        categoryIdAdd = TopicModel(Category=Categoryid)
+        form = TopicForm(request.POST,instance=categoryIdAdd)
 
         if form.is_valid():
+
             form.save()
 
             return redirect('/')
     else:
         form = TopicForm()
         context = {
-            'form': form
+            'form': form, 'category':Categoryid
         }
         return render(request,'createtopic.html', context)
 
 #удаление топика
-def topic_delete(request, id):
+def topic_delete(request,Categoryid,id):
     try:
         data = get_object_or_404(TopicModel, id=id)
     except Exception:
@@ -41,10 +44,10 @@ def topic_delete(request, id):
         data.delete()
         return redirect('/')
     else:
-        return render(request,'deletetopic.html')
+        return render(request,'deletetopic.html',{'category':Categoryid})
 
 #изменение топика
-def topik_update(request, id):
+def topik_update(request, Categoryid,id):
     try:
         old_data = get_object_or_404(TopicModel,id=id)
     except Exception:
@@ -57,6 +60,6 @@ def topik_update(request, id):
     else:
         form = TopicForm(instance=old_data)
         context = {
-            'form': form
+            'form': form, 'category':Categoryid
         }
         return render(request,'updatetopic.html',context)
