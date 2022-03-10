@@ -26,7 +26,7 @@ def create_theme(request,CategoryId,TopicId):
         context = {
             'form': form, 'CategoryId': CategoryId, 'TopicId': TopicId
         }
-        return render(request,'createtheme.html',context)
+        return render(request,'create.html',context)
 
 #удаление темы
 def theme_delete(request,CategoryId,TopicId,id):
@@ -39,7 +39,7 @@ def theme_delete(request,CategoryId,TopicId,id):
         data.delete()
         return redirect(f'/themes/{CategoryId}/{TopicId}')
     else:
-        return render(request,'deletetheme.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId})
+        return render(request,'delete.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId})
 
 #изменение темы
 def theme_update(request,CategoryId,TopicId,id):
@@ -57,4 +57,4 @@ def theme_update(request,CategoryId,TopicId,id):
         context = {
             'form': form, 'CategoryId': CategoryId, 'TopicId': TopicId
         }
-        return render(request,'updatetheme.html',context)
+        return render(request,'update.html',context)

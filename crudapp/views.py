@@ -14,7 +14,7 @@ def create_view(request):
         context = {
             'form': form
         }
-        return render(request,'createcategory.html',context)
+        return render(request, 'create.html', context)
 
 def category_view(request):
     dataset = CategoryModel.objects.all()
@@ -35,7 +35,7 @@ def category_update(request,id):
         context = {
             'form': form
         }
-        return render(request, 'updatecategory.html', context)
+        return render(request, 'update.html', context)
 
 #удаление категории
 def category_delete(request, id):
@@ -47,5 +47,5 @@ def category_delete(request, id):
         data.delete()
         return redirect('/')
     else:
-        return render(request, 'deletecategory.html')
+        return render(request, 'delete.html')
 

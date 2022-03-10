@@ -10,9 +10,10 @@ def messages_view(request,CategoryId,TopicId,ThemesId):
     try:
         data = ThemesModel.objects.get(id=ThemesId)
     except ThemesModel.DoesNotExist:
-        raise Http404('Тема  не найдена')
+        raise Http404('Тема не найдена')
     dataset = MessagesModel.objects.filter(Category=CategoryId,Topic=TopicId,Themes=ThemesId)
-    return render(request,'messageslist.html',{'dataset': dataset, 'CategoryId': CategoryId, 'TopicId': TopicId,'ThemesId': ThemesId})
+    print(dataset)
+    return render(request, 'listmessages.html', {'dataset': dataset, 'CategoryId': CategoryId, 'TopicId': TopicId, 'ThemesId': ThemesId})
 
 def create_message(request,CategoryId,TopicId,ThemesId):
     if request.method == 'POST':
@@ -23,13 +24,13 @@ def create_message(request,CategoryId,TopicId,ThemesId):
             message.Topic = TopicId
             message.Themes = ThemesId
             message.save()
-            return redirect(f'/themes/{CategoryId}/{TopicId}/{ThemesId}')
+            return redirect(f'/messages/{CategoryId}/{TopicId}/{ThemesId}')
     else:
         form = MessagesForm()
         context = {
             'form': form, 'CategoryId': CategoryId, 'TopicId': TopicId, 'ThemesId':ThemesId
         }
-        return render(request,'createmessage.html',context)
+        return render(request,'create.html',context)
 
 #удаление темы
 def message_delete(request,CategoryId,TopicId,ThemesId,id):
@@ -40,9 +41,9 @@ def message_delete(request,CategoryId,TopicId,ThemesId,id):
 
     if request.method == 'POST':
         data.delete()
-        return redirect(f'/themes/{CategoryId}/{TopicId}/{ThemesId}')
+        return redirect(f'/messages/{CategoryId}/{TopicId}/{ThemesId}')
     else:
-        return render(request,'deletemessage.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId,'ThemesId':ThemesId})
+        return render(request,'delete.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId,'ThemesId':ThemesId})
 
 #изменение темы
 def theme_update(request,CategoryId,TopicId,ThemesId,id):
@@ -54,11 +55,11 @@ def theme_update(request,CategoryId,TopicId,ThemesId,id):
         form = MessagesForm(request.POST,instance=old_data)
         if form.is_valid():
             form.save()
-            return redirect(f'/themes/{CategoryId}/{TopicId}/{ThemesId}')
+            return redirect(f'/messages/{CategoryId}/{TopicId}/{ThemesId}')
     else:
         form = MessagesForm(instance=old_data)
         context = {
             'form': form, 'CategoryId': CategoryId, 'TopicId': TopicId,'ThemesId':ThemesId
         }
-        return render(request,'updatemessage.html',context)
+        return render(request,'update.html',context)
 

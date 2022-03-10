@@ -24,7 +24,7 @@ def create_topic(request,CategoryId):
         context = {
             'form': form, 'CategoryId': CategoryId
         }
-        return render(request,'createtopic.html',context)
+        return render(request,'create.html',context)
 
 #удаление топика
 def topic_delete(request,CategoryId,id):
@@ -36,7 +36,7 @@ def topic_delete(request,CategoryId,id):
         data.delete()
         return redirect(f'/topic/{CategoryId}')
     else:
-        return render(request,'deletetopic.html',{'CategoryId': CategoryId})
+        return render(request,'delete.html',{'CategoryId': CategoryId})
 
 #изменение топика
 def topik_update(request,CategoryId,id):
@@ -54,4 +54,4 @@ def topik_update(request,CategoryId,id):
         context = {
             'form': form, 'CategoryId': CategoryId
         }
-        return render(request,'updatetopic.html',context)
+        return render(request,'update.html',context)

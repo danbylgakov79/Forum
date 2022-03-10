@@ -1,0 +1,11 @@
+{% include "header.html" %}
+<p>
+    <a href="../{{ ThemesId }}/createmessage/">Добавить сообщение</a>
+</p>
+<hr>
+{% for data in dataset %}
+     {{ data }}
+<hr>
+<a href="/themes/{{ CategoryId }}/{{ TopicId }}">Назад</a>
+{% endfor %}
+{% include "footer.html" %}

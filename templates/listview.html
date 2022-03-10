@@ -1,7 +1,8 @@
-
+{% include "header.html" %}
 <p>
     <a href="create/">Добавить категорию</a>
 </p>
+<hr>
 {% for data in dataset %}
 <a href="topic/{{ data.ID }}">{{ data }}</a>
     <a href="update/{{ data.ID }}">Изменить</a>
@@ -9,3 +10,4 @@
 <hr>
 {% endfor %}
 <a href="/">Назад</a>
+{% include "footer.html" %}

@@ -1,6 +1,8 @@
+{% include "header.html" %}
 <form method="post">
     {% csrf_token %}
-    Подтвердите удаление категории
+    Подтвердите удаление
     <input type = "submit" value="Да">
     <a href='/'>Нет</a>
 </form>
+{% include "footer.html" %}
