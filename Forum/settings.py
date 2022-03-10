@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crudapp',
     'topicapp',
     'themesapp',
+    'messagesapp',
 ]
 
 MIDDLEWARE = [

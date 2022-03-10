@@ -28,5 +28,6 @@ urlpatterns = [
     path('delete/<int:id>/', category_delete),
     path('topic/', include('topicapp.urls')),
     path('themes/',include('themesapp.urls')),
+    path('messages/',include('messagesapp.urls')),
 
 ]
