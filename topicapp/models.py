@@ -4,7 +4,7 @@ class TopicModel(models.Model):
     ID = models.IntegerField()
     Category = models.IntegerField()
     Name = models.CharField(max_length=256)
-    Content = models.CharField(max_length=1024)
+    Content = models.CharField(max_length=1024,blank=True)
 
     def __str__(self):
         return self.Name

@@ -3,7 +3,7 @@ from django.db import models
 class CategoryModel(models.Model):
     ID = models.IntegerField()
     Name = models.CharField(max_length=100)
-    Content = models.CharField(max_length=1024)
+    Content = models.CharField(max_length=1024,blank=True)
 
     def __str__(self):
         return self.Name

@@ -5,7 +5,7 @@ class ThemesModel(models.Model):
     Category = models.IntegerField()
     Topic = models.IntegerField()
     Name = models.CharField(max_length=256)
-    Content = models.CharField(max_length=512)
+    Content = models.CharField(max_length=512,blank=True)
 
     def __str__(self):
         return self.Name
