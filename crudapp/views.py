@@ -1,8 +1,13 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from .models import CategoryModel
 from .forms import CategoryForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 
+
+
+@permission_required('crudapp.can_add_category')
 def create_view(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -20,6 +25,7 @@ def category_view(request):
     dataset = CategoryModel.objects.all()
     return render(request,'listview.html',{'dataset': dataset})
 
+@permission_required('crudapp.can_update_category')
 def category_update(request,id):
     try:
         old_data = get_object_or_404(CategoryModel,id=id)
@@ -38,6 +44,8 @@ def category_update(request,id):
         return render(request, 'update.html', context)
 
 #удаление категории
+@login_required
+@permission_required('crudapp.can_delete_category')
 def category_delete(request, id):
     try:
         data = get_object_or_404(CategoryModel,id=id)
@@ -48,4 +56,3 @@ def category_delete(request, id):
         return redirect('/')
     else:
         return render(request, 'delete.html')
-

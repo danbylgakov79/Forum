@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from crudapp.models import CategoryModel
 from .forms import TopicForm
 from .models import TopicModel
@@ -11,7 +13,8 @@ def category_detail_view(request,CategoryId):
         raise Http404('Категория не найдена')
     dataset = TopicModel.objects.filter(Category=CategoryId)
     return render(request,'listtopic.html',{'dataset': dataset, 'CategoryId': CategoryId})
-
+@login_required
+@permission_required('topicapp.can_add_topic')
 def create_topic(request,CategoryId):
     if request.method == 'POST':
         categoryIdAdd = TopicModel(Category=CategoryId)
@@ -27,6 +30,8 @@ def create_topic(request,CategoryId):
         return render(request,'create.html',context)
 
 #удаление топика
+@login_required
+@permission_required('topicapp.can_delete_topic')
 def topic_delete(request,CategoryId,id):
     try:
         data = get_object_or_404(TopicModel, id=id)
@@ -39,6 +44,8 @@ def topic_delete(request,CategoryId,id):
         return render(request,'delete.html',{'CategoryId': CategoryId})
 
 #изменение топика
+@login_required
+@permission_required('topicapp.can_update_topic')
 def topik_update(request,CategoryId,id):
     try:
         old_data = get_object_or_404(TopicModel,id=id)

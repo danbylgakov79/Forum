@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from themesapp.models import ThemesModel
+from django.contrib.auth.decorators import permission_required
 from .forms import MessagesForm
 from .models import MessagesModel
 from django.shortcuts import render,redirect,get_object_or_404
@@ -14,7 +16,8 @@ def messages_view(request,CategoryId,TopicId,ThemesId):
     dataset = MessagesModel.objects.filter(Category=CategoryId,Topic=TopicId,Themes=ThemesId)
     print(dataset)
     return render(request, 'listmessages.html', {'dataset': dataset, 'CategoryId': CategoryId, 'TopicId': TopicId, 'ThemesId': ThemesId})
-
+@login_required
+@permission_required('messagesapp.can_add_message')
 def create_message(request,CategoryId,TopicId,ThemesId):
     if request.method == 'POST':
         form = MessagesForm(request.POST)
@@ -33,6 +36,8 @@ def create_message(request,CategoryId,TopicId,ThemesId):
         return render(request,'create.html',context)
 
 #удаление темы
+@login_required
+@permission_required('messagesapp.can_delete_message')
 def message_delete(request,CategoryId,TopicId,ThemesId,id):
     try:
         data = get_object_or_404(MessagesModel,id=id)
@@ -46,6 +51,8 @@ def message_delete(request,CategoryId,TopicId,ThemesId,id):
         return render(request,'delete.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId,'ThemesId':ThemesId})
 
 #изменение темы
+@login_required
+@permission_required('messagesapp.can_update_message')
 def theme_update(request,CategoryId,TopicId,ThemesId,id):
     try:
         old_data = get_object_or_404(MessagesModel,id=id)

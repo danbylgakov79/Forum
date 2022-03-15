@@ -11,3 +11,5 @@ class TopicModel(models.Model):
 
     class Meta:
         db_table = 'Topic'
+        permissions = (("can_add_topic", "Add topic"), ("can_update_topic", "Update topic"),
+                       ("can_delete_topic", "Delete topic"))

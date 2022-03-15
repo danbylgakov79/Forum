@@ -23,6 +23,7 @@ from themesapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('create/', create_view),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', category_view),
     path('update/<int:id>/', category_update),
     path('delete/<int:id>/', category_delete),

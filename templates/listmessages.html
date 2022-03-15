@@ -1,6 +1,8 @@
 {% include "header.html" %}
 <p>
+    {% if perms.messagesapp.can_add_message %}
     <a href="../{{ ThemesId }}/createmessage/">Добавить сообщение</a>
+    {% endif %}
 </p>
 <hr>
 {% for data in dataset %}

@@ -13,3 +13,5 @@ class MessagesModel(models.Model):
 
     class Meta:
         db_table = "Messages"
+        permissions = (("can_add_message", "Add message"), ("can_update_message", "Update message"),
+                       ("can_delete_message", "Delete message"))

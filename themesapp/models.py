@@ -12,3 +12,5 @@ class ThemesModel(models.Model):
 
     class Meta:
        db_table = 'Themes'
+       permissions = (("can_add_theme", "Add theme"), ("can_update_theme", "Update theme"),
+                      ("can_delete_theme", "Delete theme"))

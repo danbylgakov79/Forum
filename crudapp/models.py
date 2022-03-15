@@ -10,6 +10,7 @@ class CategoryModel(models.Model):
 
     class Meta:
        db_table = 'Category'
+       permissions = (("can_add_category","Add category"),("can_update_category","Update category"), ("can_delete_category","Delete category"))
 
 
 

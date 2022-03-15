@@ -6,5 +6,12 @@
     <title>Форум</title>
 </head>
 <body>
-<input type="button" value="Войти"/>
-<input type="button" value="Зарегистрироваться"/>
+ {% if user.is_authenticated %}
+     <li>Добрый день, {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Войти</a></li>
+     <li><a href="{% url 'login'%}?next={{request.path}}">Зарегистрироваться</a></li>
+   {% endif %}
+  </ul>
+</body>

@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
+
 from topicapp.models import TopicModel
 from .forms import ThemesForm
 from .models import ThemesModel
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
-
+from django.contrib.auth.decorators import permission_required
 def themes_view(request,CategoryId,TopicId):
     try:
         data = TopicModel.objects.get(id=TopicId)
@@ -11,7 +13,8 @@ def themes_view(request,CategoryId,TopicId):
         raise Http404('Категория не найдена')
     dataset = ThemesModel.objects.filter(Topic=TopicId)
     return render(request,'listthemes.html',{'dataset': dataset, 'CategoryId': CategoryId, 'TopicId': TopicId})
-
+@login_required
+@permission_required('themesapp.can_add_theme')
 def create_theme(request,CategoryId,TopicId):
     if request.method == 'POST':
         form = ThemesForm(request.POST)
@@ -29,6 +32,8 @@ def create_theme(request,CategoryId,TopicId):
         return render(request,'create.html',context)
 
 #удаление темы
+@login_required
+@permission_required('themesapp.can_delete_theme')
 def theme_delete(request,CategoryId,TopicId,id):
     try:
         data = get_object_or_404(ThemesModel,id=id)
@@ -42,6 +47,8 @@ def theme_delete(request,CategoryId,TopicId,id):
         return render(request,'delete.html',{ 'CategoryId': CategoryId, 'TopicId': TopicId})
 
 #изменение темы
+@login_required
+@permission_required('themesapp.can_update_theme')
 def theme_update(request,CategoryId,TopicId,id):
     try:
         old_data = get_object_or_404(ThemesModel,id=id)
