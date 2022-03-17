@@ -1,17 +1,17 @@
 {% include "header.html" %}
 <p>
      {% if perms.topicapp.can_add_topic %}
-    <a href="../{{ CategoryId }}/createtopic">Добавить топик</a>
+    <a href="../{{ CategoryId }}/createtopic" class="btn btn-primary">Добавить топик</a>
     {% endif %}
 </p>
 <hr>
 {% for data in dataset %}
     <a href="/themes/{{ CategoryId }}/{{ data.ID }}">{{ data }}</a>
     {% if perms.topicapp.can_update_topic %}
-    <a href="../{{ CategoryId }}/updatetopic/{{ data.ID }}">Изменить</a>
+    <a href="../{{ CategoryId }}/updatetopic/{{ data.ID }}" class="btn btn-success">Изменить</a>
      {% endif %}
     {% if perms.topicapp.can_delete_topic %}
-    <a href="../{{ CategoryId }}/deletetopic/{{ data.ID }}">Удалить</a>
+    <a href="../{{ CategoryId }}/deletetopic/{{ data.ID }}" class="btn btn-danger">Удалить</a>
      {% endif %}
 <hr>
 {% endfor %}

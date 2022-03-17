@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'topicapp',
     'themesapp',
     'messagesapp',
+    'usersapp',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Forum.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
