@@ -11,6 +11,6 @@ class UsersModel(models.Model):
     email = models.CharField(max_length=75)
     is_staff = models.IntegerField()
     is_active = models.IntegerField()
-    data_joined =models.DateTimeField()
+    data_joined = models.DateTimeField()
 
 
