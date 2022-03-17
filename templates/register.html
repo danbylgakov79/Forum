@@ -1,3 +1,4 @@
+{% include "header.html" %}
 <form method = "post">
     {% csrf_token %}
     <label for="exampleFormControlInput1" class="form-label">{{ user_form.as_p }}</label>

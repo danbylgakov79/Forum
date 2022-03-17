@@ -7,14 +7,10 @@ from django import forms
 
 
 
-class UserRegistrationForm(forms.Form):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
-
-
+class UserRegistrationForm(ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'email')
+        fields = ('username', 'first_name', 'email','password')
 
     def clean_password2(self):
         cd = self.cleaned_data
