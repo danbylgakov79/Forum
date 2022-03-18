@@ -15,7 +15,7 @@ def themes_view(request,CategoryId,TopicId):
     return render(request,'listthemes.html',{'dataset': dataset, 'CategoryId': CategoryId, 'TopicId': TopicId})
 @login_required
 @permission_required('themesapp.can_add_theme')
-def create_theme(request,CategoryId,TopicId):
+def theme_create(request,CategoryId,TopicId):
     if request.method == 'POST':
         form = ThemesForm(request.POST)
         if form.is_valid():

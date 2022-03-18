@@ -1,4 +1,4 @@
-{% include "header.html" %}
+{% include "blocks/header.html" %}
 <p>
     {% if perms.themesapp.can_add_theme %}
         <a href="../{{ TopicId }}/createtheme/" class="btn btn-primary">Добавить тему</a>
@@ -16,4 +16,4 @@
     <hr>
 {% endfor %}
 <a class="btn btn-danger" href="/topic/{{ CategoryId }}">Назад</a>
-{% include "footer.html" %}
+{% include "blocks/footer.html" %}

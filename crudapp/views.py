@@ -5,10 +5,8 @@ from .forms import CategoryForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import Http404
 
-
-
 @permission_required('crudapp.can_add_category')
-def create_view(request):
+def category_create(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -23,7 +21,7 @@ def create_view(request):
 
 def category_view(request):
     dataset = CategoryModel.objects.all()
-    return render(request,'listview.html',{'dataset': dataset})
+    return render(request, 'listcategories.html', {'dataset': dataset})
 
 @permission_required('crudapp.can_update_category')
 def category_update(request,id):

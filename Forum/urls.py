@@ -22,17 +22,12 @@ from topicapp.views import *
 from themesapp.views import *
 from usersapp.views import *
 
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('create/', create_view),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/', usersapp.views.register, name='register'),
-    path('', category_view),
-    path('update/<int:id>/', category_update),
-    path('delete/<int:id>/', category_delete),
-    path('topic/', include('topicapp.urls')),
+    path('admin/',admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls')),
+    path('accounts/register/',usersapp.views.register,name='register'),
+    path('',include('crudapp.urls')),
+    path('topic/',include('topicapp.urls')),
     path('themes/',include('themesapp.urls')),
     path('messages/',include('messagesapp.urls')),
-
 ]

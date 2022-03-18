@@ -12,10 +12,10 @@ def category_detail_view(request,CategoryId):
     except CategoryModel.DoesNotExist:
         raise Http404('Категория не найдена')
     dataset = TopicModel.objects.filter(Category=CategoryId)
-    return render(request,'listtopic.html',{'dataset': dataset, 'CategoryId': CategoryId})
+    return render(request, 'listtopics.html', {'dataset': dataset, 'CategoryId': CategoryId})
 @login_required
 @permission_required('topicapp.can_add_topic')
-def create_topic(request,CategoryId):
+def topic_create(request,CategoryId):
     if request.method == 'POST':
         categoryIdAdd = TopicModel(Category=CategoryId)
         form = TopicForm(request.POST,instance=categoryIdAdd)

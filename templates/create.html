@@ -1,9 +1,9 @@
-{% include "header.html" %}
+{% include "blocks/header.html" %}
 <form method = "post">
     {% csrf_token %}
     <label for="exampleFormControlInput1" class="form-label">{{ form.as_p }}</label>
     <br>
     <input type = "submit" class="btn btn-success" value = "Создать">
-    <a href="/" class="btn btn-danger">Назад</a>
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">Назад</a>
 </form>
-{% include "footer.html" %}
+{% include "blocks/footer.html" %}
