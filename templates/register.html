@@ -1,8 +1,0 @@
-{% include "header.html" %}
-<form method = "post">
-    {% csrf_token %}
-    <label for="exampleFormControlInput1" class="form-label">{{ user_form.as_p }}</label>
-    <input type = "submit" class="btn btn-success" value = "Создать">
-    <a href="/" class="btn btn-danger">Назад</a>
-</form>
-{% include "footer.html" %}

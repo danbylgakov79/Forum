@@ -2,7 +2,7 @@
 <form method="post">
     {% csrf_token %}
     Подтвердите удаление
-    <input type = "submit" value="Да">
-    <a href='/'>Нет</a>
+    <input class="btn btn-success" type = "submit" value="Да">
+    <a class="btn btn-danger" href='/'>Нет</a>
 </form>
 {% include "footer.html" %}

@@ -1,19 +1,19 @@
 {% include "header.html" %}
 <p>
     {% if perms.crudapp.can_add_category %}
-    <a href="create/" class="btn btn-primary">Добавить категорию</a>
+        <a href="create/" class="btn btn-primary">Добавить категорию</a>
     {%  endif %}
 </p>
 <hr>
 {% for data in dataset %}
-<a href="topic/{{ data.ID }}">{{ data }}</a>
-{% if perms.crudapp.can_update_category %}
-    <a href="update/{{ data.ID }}" class="btn btn-success">Изменить</a>
+    <a href="topic/{{ data.ID }}">{{ data }}</a>
+    {% if perms.crudapp.can_update_category %}
+        <a href="update/{{ data.ID }}" class="btn btn-success">Изменить</a>
+    {% endif %}
     {% if perms.crudapp.can_delete_category %}
-     {% endif %}
-    <a href="delete/{{ data.ID }}" class="btn btn-danger">Удалить</a>
- {% endif %}
-<hr>
+        <a href="delete/{{ data.ID }}" class="btn btn-danger">Удалить</a>
+    {% endif %}
+    <hr>
 {% endfor %}
-<a href="/">Назад</a>
+<a class="btn btn-danger" href="/">Назад</a>
 {% include "footer.html" %}

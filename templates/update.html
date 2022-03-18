@@ -2,7 +2,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Изменить">
-    <a href="/">Назад</a>
+    <input class="btn btn-success" type="submit" value="Изменить">
+    <a class="btn btn-danger" href="/">Назад</a>
 </form>
 {% include "footer.html" %}
